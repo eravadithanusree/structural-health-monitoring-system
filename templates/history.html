@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SHMS &middot; History</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="app-shell">
+
+  <header class="topbar">
+    <div class="topbar-left">
+      <span class="brand-mark" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <path d="M3 18h18M4 18V9l4-3 4 3 4-3 4 3v9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <div class="brand-text">
+        <span class="brand-title">SHMS</span>
+        <span class="brand-sub">Structural Health Monitoring</span>
+      </div>
+    </div>
+
+    <nav class="topbar-nav">
+      <a href="/" class="nav-link">Live</a>
+      <a href="/history" class="nav-link is-active">History</a>
+    </nav>
+
+    <div class="topbar-right">
+      <label class="structure-select-wrap">
+        <span class="sr-only">Structure</span>
+        <select id="structure-select" class="structure-select">
+          <option value="default">Riverside Bridge &middot; Sector 4</option>
+        </select>
+      </label>
+    </div>
+  </header>
+
+  <main class="content">
+
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Trend over recorded history</h2>
+        <span class="panel-sub" id="history-range">&mdash;</span>
+      </div>
+      <div class="chart-wrap">
+        <canvas id="history-chart" height="90"></canvas>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Reading log</h2>
+        <span class="panel-sub" id="history-count">&mdash;</span>
+      </div>
+
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Timestamp</th>
+              <th>Vibration (mm/s)</th>
+              <th>Strain (µɛ)</th>
+              <th>Temperature (&deg;C)</th>
+              <th>Status</th>
+              <th>Confidence</th>
+            </tr>
+          </thead>
+          <tbody id="history-tbody">
+            <tr><td colspan="6" class="empty-row">Loading&hellip;</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pagination">
+        <button id="prev-page" class="btn-ghost" disabled>&larr; Previous</button>
+        <span id="page-indicator">Page 1</span>
+        <button id="next-page" class="btn-ghost">Next &rarr;</button>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="app-footer">
+    <span>SHMS &middot; Educational / research demo</span>
+    <span id="footer-clock"></span>
+  </footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
+<script src="{{ url_for('static', filename='js/chart.js') }}"></script>
+<script src="{{ url_for('static', filename='js/history.js') }}"></script>
+</body>
+</html>
